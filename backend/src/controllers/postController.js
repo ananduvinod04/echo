@@ -1,5 +1,8 @@
 import Post from "../models/Post.js";
 import cloudinary from "../config/cloudinary.js";
+import Notification from "../models/Notification.js";
+import { emitNotification } from "../socket/socket.js";
+
 
 
 //create a post
@@ -113,6 +116,17 @@ export const likeUnlikePost = async (req, res) => {
 
     await post.save();
     res.json(post);
+    // send notification ONLY when liking (not unliking)
+if (!isLiked && post.author.toString() !== req.user.toString()) {
+  const notification = await Notification.create({
+    sender: req.user,
+    receiver: post.author,
+    type: "like",
+    referenceId: post._id,
+  });
+
+  emitNotification(post.author, notification);
+}
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -133,7 +147,20 @@ export const addComment = async (req, res) => {
     });
 
     await post.save();
+
     res.json(post);
+// send notification
+
+    if (post.author.toString() !== req.user.toString()) {
+  const notification = await Notification.create({
+    sender: req.user,
+    receiver: post.author,
+    type: "comment",
+    referenceId: post._id,
+  });
+
+  emitNotification(post.author, notification);
+}
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
