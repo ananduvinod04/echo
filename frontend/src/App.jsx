@@ -1,4 +1,6 @@
-import WelcomePage from "./pages/WelcomePage"
+import HomePage from "./pages/HomePage"
+// import WelcomePage from "./pages/WelcomePage"
+
 
 
 
@@ -6,7 +8,8 @@ function App() {
   return (
     <>
  
-    <WelcomePage />
+    {/* <WelcomePage /> */}
+    <HomePage/>
     
     
     </>

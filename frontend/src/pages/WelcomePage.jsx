@@ -13,7 +13,7 @@ export default function WelcomePage() {
         
         <div className="flex flex-1 items-center justify-center">
           <div className="w-full max-w-xs">
-            {state === "login" ? <LoginForm /> : <SignupForm />}
+            {state === "login" ? <LoginForm  setState={setState}/> : <SignupForm  setState={setState}/>}
             
           </div>
         </div>

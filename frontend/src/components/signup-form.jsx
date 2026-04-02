@@ -8,6 +8,7 @@ import {
   FieldSeparator,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { AudioLines } from "lucide-react"
 import { useState } from "react"
 
 export function SignupForm({
@@ -46,10 +47,14 @@ export function SignupForm({
   };
 
   return (
-    <form className={cn("flex flex-col gap-6", className)} onSubmit={handleSubmit} {...props}>
+    <form className={cn("flex flex-col gap-4 max-w-md mx-auto", className)} onSubmit={handleSubmit} {...props}>
       <FieldGroup>
+        <div className="flex items-center justify-center gap-2">
+          <AudioLines className="h-7 w-7 text-primary" />
+          <h1 className="text-2xl font-bold">Echo</h1>
+        </div>
         <div className="flex flex-col items-center gap-1 text-center">
-          <h1 className="text-2xl font-bold">Create your account</h1>
+          <h2 className="text-xl font-semibold">Create your account</h2>
           <p className="text-sm text-balance text-muted-foreground">
             Fill in the form below to create your account
           </p>
@@ -120,7 +125,7 @@ export function SignupForm({
         <Field>
         
           <FieldDescription className="px-6 text-center">
-            Already have an account? <a href="#">Sign in</a>
+            Already have an account? <a href="#" onClick={()=>(props.setState("login"))}>Sign in</a>
           </FieldDescription>
         </Field>
       </FieldGroup>

@@ -53,7 +53,7 @@ export function LoginForm({
          
           <FieldDescription className="text-center">
             Don&apos;t have an account?{" "}
-            <a href="#" className="underline underline-offset-4">
+            <a href="#" className="underline underline-offset-4" onClick={()=>(props.setState("signup"))}>
               Sign up
             </a>
           </FieldDescription>
