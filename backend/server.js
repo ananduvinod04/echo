@@ -19,8 +19,7 @@ const PORT = process.env.PORT || 5000;
 
 console.log("TEST_ENV =", process.env.TEST_ENV);
 
-// ❌ REMOVE app.listen
-// ✅ USE server.listen
+//  USE server.listen
 server.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
